@@ -4,10 +4,12 @@
 \alias{reset_chat_session}
 \title{Reset Chat Session}
 \usage{
-reset_chat_session(session = list())
+reset_chat_session(session = list(), session_id = "1")
 }
 \arguments{
 \item{session}{An optional session to set.}
+
+\item{session_id}{The ID of the session to be used.}
 }
 \description{
 This function is intended to be used with `ask_gemini`. If we are using `ask_gemini` to chat

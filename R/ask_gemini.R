@@ -3,6 +3,7 @@
 #' Note: See also `reset_chat_session`.
 #'
 #' @param question The question to ask Gemini.
+#' @param session_id The ID of the session to be used.
 #'
 #' @examples
 #' \dontrun{
@@ -13,9 +14,9 @@
 #'
 #' @export
 #'
-ask_gemini <- function(question) {
+ask_gemini <- function(question, session_id = "1") {
   # Get the existing chat session messages, and add the new message.
-  chat_session_messages <- append(get_chat_session(), list(
+  chat_session_messages <- append(get_chat_session(session_id), list(
     list(role = "user", parts = list(text = question))
   ))
   # Send the query to Gemini.
@@ -24,6 +25,6 @@ ask_gemini <- function(question) {
     list(role = "model", parts = list(text = gemini_reply))
   ))
   # Update the chat session messages with the new question and the reply.
-  reset_chat_session(chat_session_messages)
+  reset_chat_session(chat_session_messages, session_id)
   gemini_reply
 }

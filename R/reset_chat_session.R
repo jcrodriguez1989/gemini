@@ -4,9 +4,12 @@
 #' with Gemini, and we want to start a new conversation, we must call `reset_chat_session`.
 #'
 #' @param session An optional session to set.
+#' @param session_id The ID of the session to be used.
 #'
 #' @export
 #'
-reset_chat_session <- function(session = list()) {
-  assign("chat_session_messages", session, envir = .state)
+reset_chat_session <- function(session = list(), session_id = "1") {
+  all_sessions <- get("chat_session_messages", envir = .state)
+  all_sessions[[as.character(session_id)]] <- session
+  assign("chat_session_messages", all_sessions, envir = .state)
 }

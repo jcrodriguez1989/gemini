@@ -2,6 +2,7 @@
 #'
 #' @param question The question to ask Gemini.
 #' @param image The path or URL of the image.
+#' @param session_id The ID of the session to be used.
 #'
 #' @examples
 #' \dontrun{
@@ -17,7 +18,7 @@
 #'
 #' @export
 #'
-ask_image_gemini <- function(question, image) {
+ask_image_gemini <- function(question, image, session_id = "1") {
   if (!file.exists(image)) {
     image_url <- image
     image <- tempfile()
@@ -28,12 +29,12 @@ ask_image_gemini <- function(question, image) {
     "Fully describe what you see in this picture.", image
   ))
   # Update the chat session messages with the new question and the reply.
-  reset_chat_session(append(get_chat_session(), list(
+  reset_chat_session(append(get_chat_session(session_id), list(
     list(role = "user", parts = list(text = paste(
       question, "Context: an image with the following description:",
       img_description
     ))),
     list(role = "model", parts = list(text = gemini_reply))
-  )))
+  )), session_id)
   gemini_reply
 }

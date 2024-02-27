@@ -4,7 +4,10 @@
 \alias{get_chat_session}
 \title{Get Chat Session}
 \usage{
-get_chat_session()
+get_chat_session(session_id = "1")
+}
+\arguments{
+\item{session_id}{The ID of the session to be used.}
 }
 \description{
 Get Chat Session
