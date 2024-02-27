@@ -11,7 +11,5 @@ list_models <- function(gemini_api_key = Sys.getenv("GEMINI_API_KEY")) {
   if (nchar(gemini_api_key) == 0) {
     stop("`GEMINI_API_KEY` not provided.")
   }
-  GET(api_url(gemini_api_key, "", "")) |>
-    content(as = "text", encoding = "UTF-8") |>
-    fromJSON()
+  fromJSON(GET(api_url(gemini_api_key, "", "")), content(as = "text", encoding = "UTF-8"))
 }
