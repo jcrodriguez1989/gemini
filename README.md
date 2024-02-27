@@ -4,14 +4,10 @@
 # Gemini coding assistant for RStudio
 
 <!-- badges: start -->
-
-[![CRAN
-status](https://www.r-pkg.org/badges/version/gemini)](https://CRAN.R-project.org/package=gemini)
-[![R-CMD-check](https://github.com/jcrodriguez1989/gemini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jcrodriguez1989/gemini/actions/workflows/R-CMD-check.yaml)
-[![CRAN
-downloads](https://cranlogs.r-pkg.org/badges/gemini)](https://cran.rstudio.com/web/packages/gemini/index.html)
+<!-- [![CRAN status](https://www.r-pkg.org/badges/version/gemini)](https://CRAN.R-project.org/package=gemini) -->
+<!-- [![R-CMD-check](https://github.com/jcrodriguez1989/gemini/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jcrodriguez1989/gemini/actions/workflows/R-CMD-check.yaml) -->
+<!-- [![CRAN downloads](https://cranlogs.r-pkg.org/badges/gemini)](https://cran.rstudio.com/web/packages/gemini/index.html) -->
 <!-- badges: end -->
-
 <center>
 <img width="300" height="400" src="man/figures/gemini_meme.jpeg">
 <p>
