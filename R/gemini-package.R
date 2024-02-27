@@ -1,0 +1,9 @@
+#' 'Google's 'Gemini' <https://gemini.google.com/> coding assistant for 'RStudio'. A set
+#' of functions and 'RStudio' addins that aim to help the R developer in tedious coding tasks.
+#'
+"_PACKAGE"
+
+.state <- new.env(parent = emptyenv())
+
+# Empty chat session messages at startup.
+assign("chat_session_messages", list(), envir = .state)
