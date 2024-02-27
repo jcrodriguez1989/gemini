@@ -29,7 +29,7 @@ updater <- Updater(token = bot_token)
 ### Start
 updater <- updater + CommandHandler("start", function(bot, update) {
   log_info("[start] - {as.character(toJSON(update$message, auto_unbox = TRUE))}")
-  bot$send_message(chat_id = update$message$chat_id, text = "Hola! En que puedo ayudarte?")
+  bot$send_message(chat_id = update$message$chat_id, text = "¡Hola! En que puedo ayudarte?")
 })
 
 ### Reset bot session
@@ -66,7 +66,7 @@ chat_text <- function(bot, update) {
   log_info("[chat_text] - {as.character(toJSON(update$message, auto_unbox = TRUE))}")
   my_reply <- try(ask_gemini(update$message$text, session_id = update$message$from$id))
   if (inherits(my_reply, "try-error")) {
-    my_reply <- "Ocurrió un error"
+    my_reply <- "Ocurrió un error, intenta de nuevo"
   }
   log_info("[chat_text - reply] - {my_reply}")
   bot$send_message(chat_id = update$message$chat_id, text = my_reply)
@@ -87,7 +87,7 @@ chat_image <- function(bot, update) {
   }
   my_reply <- try(ask_image_gemini(question, photo_path, session_id = update$message$from$id))
   if (inherits(my_reply, "try-error")) {
-    my_reply <- "Ocurrió un error"
+    my_reply <- "Ocurrió un error, intenta de nuevo"
   }
   unlink(photo_path)
   log_info("[chat_image - reply] - {my_reply}")
