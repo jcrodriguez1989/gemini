@@ -26,6 +26,12 @@ log_info("Running bot ", bot_token, " ; With admin ", admin_chat_id)
 bot <- Bot(token = bot_token)
 updater <- Updater(token = bot_token)
 
+### Start
+updater <- updater + CommandHandler("start", function(bot, update) {
+  log_info("[start] - {as.character(toJSON(update$message, auto_unbox = TRUE))}")
+  bot$send_message(chat_id = update$message$chat_id, text = "Hola! En que puedo ayudarte?")
+})
+
 ### Reset bot session
 updater <- updater + CommandHandler("reset_bot_session", function(bot, update) {
   log_info("[reset_bot_session] - {as.character(toJSON(update$message, auto_unbox = TRUE))}")
