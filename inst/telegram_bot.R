@@ -54,12 +54,14 @@ get_message <- function(msg_code, language, params = NULL) {
       "service."
     )
   )
-  if (language %in% msgs$language) {
-    res <- glue(filter(msgs, msg_code == !!msg_code, language == !!language)$msg)
-  } else {
-    res <- glue(filter(msgs, msg_code == !!msg_code, language == "en")$msg)
-    reset_chat_session(session_id = "-1")
-    res <- ask_gemini(glue("Translate the following msg into {language}: {res}"), "-1")
+  res <- glue(filter(msgs, msg_code == !!msg_code, language == "en")$msg)
+  reset_chat_session(session_id = "-1")
+  if (!is.null(language)) {
+    if (language %in% msgs$language) {
+      res <- glue(filter(msgs, msg_code == !!msg_code, language == !!language)$msg)
+    } else {
+      res <- ask_gemini(glue("Translate the following msg into {language}: {res}"), "-1")
+    }
   }
   res
 }
@@ -140,6 +142,9 @@ updater <- updater + MessageHandler(chat_image, MessageFilters$photo)
 ### Unavailable handlers
 chat_unavailable <- function(bot, update) {
   log_info("[chat_unavailable] - {as.character(toJSON(update$message, auto_unbox = TRUE))}")
+  if (isTRUE(update$message$chat$type %in% c("group", "supergroup"))) {
+    return()
+  }
   bot$send_message(
     chat_id = update$message$chat_id,
     text = get_message("offer_premium", update$message$from$language_code)
