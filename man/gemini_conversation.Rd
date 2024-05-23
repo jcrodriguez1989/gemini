@@ -4,11 +4,7 @@
 \alias{gemini_conversation}
 \title{Get Gemini Conversation Endpoint}
 \usage{
-gemini_conversation(
-  prompt,
-  gemini_api_key = Sys.getenv("GEMINI_API_KEY"),
-  session = NULL
-)
+gemini_conversation(prompt, gemini_api_key, session = NULL)
 }
 \arguments{
 \item{prompt}{The prompt to start the conversation.}

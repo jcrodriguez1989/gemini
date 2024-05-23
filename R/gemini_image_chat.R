@@ -9,7 +9,7 @@
 #' @importFrom utils download.file
 #' @importFrom xfun base64_encode
 #'
-gemini_image_chat <- function(prompt, image, gemini_api_key = Sys.getenv("GEMINI_API_KEY")) {
+gemini_image_chat <- function(prompt, image, gemini_api_key) {
   if (nchar(gemini_api_key) == 0) {
     stop("`GEMINI_API_KEY` not provided.")
   }

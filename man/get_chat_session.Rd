@@ -7,7 +7,7 @@
 get_chat_session(session_id = "1")
 }
 \arguments{
-\item{session_id}{The ID of the session to be used.}
+\item{session_id}{The ID of the session to be used. If `NULL`, it will return an empty session.}
 }
 \description{
 Get Chat Session
