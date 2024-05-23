@@ -4,7 +4,7 @@
 \alias{gemini_image_chat}
 \title{Get Gemini Image Endpoint}
 \usage{
-gemini_image_chat(prompt, image, gemini_api_key = Sys.getenv("GEMINI_API_KEY"))
+gemini_image_chat(prompt, image, gemini_api_key)
 }
 \arguments{
 \item{prompt}{The prompt to start the conversation.}

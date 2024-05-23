@@ -6,8 +6,7 @@
 #'
 #' @importFrom httr content POST
 #'
-gemini_conversation <- function(prompt, gemini_api_key = Sys.getenv("GEMINI_API_KEY"),
-                                session = NULL) {
+gemini_conversation <- function(prompt, gemini_api_key, session = NULL) {
   if (nchar(gemini_api_key) == 0) {
     stop("`GEMINI_API_KEY` not provided.")
   }
