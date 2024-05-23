@@ -4,6 +4,7 @@
 #'
 #' @param question The question to ask Gemini.
 #' @param session_id The ID of the session to be used.
+#' @param gemini_api_key Gemini's API key.
 #'
 #' @examples
 #' \dontrun{
@@ -14,13 +15,15 @@
 #'
 #' @export
 #'
-ask_gemini <- function(question, session_id = "1") {
+ask_gemini <- function(question, session_id = "1", gemini_api_key = Sys.getenv("GEMINI_API_KEY")) {
   # Get the existing chat session messages, and add the new message.
   chat_session_messages <- append(get_chat_session(session_id), list(
     list(role = "user", parts = list(text = question))
   ))
   # Send the query to Gemini.
-  gemini_reply <- parse_response(gemini_conversation(question, session = chat_session_messages))
+  gemini_reply <- parse_response(
+    gemini_conversation(question, gemini_api_key, chat_session_messages)
+  )
   chat_session_messages <- append(chat_session_messages, list(
     list(role = "model", parts = list(text = gemini_reply))
   ))

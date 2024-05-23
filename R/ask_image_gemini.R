@@ -3,6 +3,7 @@
 #' @param question The question to ask Gemini.
 #' @param image The path or URL of the image.
 #' @param session_id The ID of the session to be used.
+#' @param gemini_api_key Gemini's API key.
 #'
 #' @examples
 #' \dontrun{
@@ -18,15 +19,16 @@
 #'
 #' @export
 #'
-ask_image_gemini <- function(question, image, session_id = "1") {
+ask_image_gemini <- function(question, image, session_id = "1",
+                             gemini_api_key = Sys.getenv("GEMINI_API_KEY")) {
   if (!file.exists(image)) {
     image_url <- image
     image <- tempfile()
     download.file(image_url, image)
   }
-  gemini_reply <- parse_response(gemini_image_chat(question, image))
+  gemini_reply <- parse_response(gemini_image_chat(question, image, gemini_api_key))
   img_description <- parse_response(gemini_image_chat(
-    "Fully describe what you see in this picture.", image
+    "Fully describe what you see in this picture.", image, gemini_api_key
   ))
   # Update the chat session messages with the new question and the reply.
   reset_chat_session(append(get_chat_session(session_id), list(
