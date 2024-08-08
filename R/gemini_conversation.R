@@ -23,7 +23,7 @@ gemini_conversation <- function(prompt, gemini_api_key, session = NULL) {
     post_res <- POST(
       api_url(gemini_api_key),
       encode = "json",
-      body = list(contents = session)
+      body = list(contents = session, safetySettings = get_safety_settings())
     )
     if (!post_res$status_code %in% 200:299) {
       stop(content(post_res))

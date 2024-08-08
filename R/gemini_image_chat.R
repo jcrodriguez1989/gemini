@@ -25,13 +25,14 @@ gemini_image_chat <- function(prompt, image, gemini_api_key) {
     list(text = prompt),
     list(inline_data = list(mime_type = "image/jpeg", data = base64_encode(image)))
   ))))
+  messages$safetySettings <- get_safety_settings()
   # Run the API query.
   final_res <- list()
   keep_querying <- TRUE
   while (keep_querying) {
     post_res <- POST(
       paste0(
-        "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:",
+        "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:",
         "generateContent?key=", gemini_api_key
       ),
       encode = "json",
